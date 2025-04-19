@@ -10,7 +10,7 @@
                 </a>
             </div>
 
-            <!-- Navigation Links (Desktop only) -->
+            <!-- Navigation Links -->
             <div class="flex space-x-6 items-center">
                 <?php if (Auth::check()): ?>
                     <a href="/thesis/create" class="hover:text-yellow-300 transition">Create Post</a>
