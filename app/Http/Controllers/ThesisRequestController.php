@@ -22,7 +22,7 @@ class ThesisRequestController extends Controller
 
         ThesisRequest::create([
             'post_id' => $id,
-            'sender_id' => Auth::id(), // more standard and secure
+            'sender_id' => Auth::id(), 
             'message' => $request->message
         ]);
         
@@ -34,7 +34,6 @@ class ThesisRequestController extends Controller
     {
         $userId = Auth::id();
 
-        // Get all requests for posts created by current user
         $requests = ThesisRequest::whereHas('post', function ($q) use ($userId) {
             $q->where('posted_by', $userId);
         })->with(['post', 'sender'])->get();
