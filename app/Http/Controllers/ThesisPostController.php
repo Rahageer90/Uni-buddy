@@ -29,7 +29,7 @@ class ThesisPostController extends Controller
         ]);
     
         ThesisPost::create([
-            'posted_by' => Auth::id(), // ✅ Laravel will get the authenticated user ID
+            'posted_by' => Auth::id(), 
             'department' => $request->department,
             'thesis_topic' => $request->thesis_topic,
             'thesis_field' => $request->thesis_field,
