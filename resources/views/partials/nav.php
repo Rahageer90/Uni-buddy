@@ -14,7 +14,7 @@
             <div class="flex space-x-6 items-center">
                 <?php if (Auth::check()): ?>
                     <a href="/thesis/create" class="hover:text-yellow-300 transition">Create Post</a>
-                    <a href="/thesis" class="hover:text-yellow-300 transition">Dashboard</a>
+                    <a href="/thesis" class="hover:text-yellow-300 transition">Thesis Dashboard</a>
                     <a href="/thesis/my-posts" class="hover:text-yellow-300 transition">My Posts</a>
                     <a href="/thesis/requests" class="hover:text-yellow-300 transition">Requests</a>
 
