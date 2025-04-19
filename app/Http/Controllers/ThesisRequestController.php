@@ -5,7 +5,7 @@ use App\Models\ThesisPost;
 use App\Models\ThesisRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 class ThesisRequestController extends Controller
 {
     public function sendRequest(Request $request, $id)
@@ -22,16 +22,17 @@ class ThesisRequestController extends Controller
 
         ThesisRequest::create([
             'post_id' => $id,
-            'sent_by' => Session::get('user_id'),
+            'sender_id' => Auth::id(), // more standard and secure
             'message' => $request->message
         ]);
+        
 
         return redirect()->back()->with('success', 'Request sent.');
     }
 
     public function myReceivedRequests()
     {
-        $userId = Session::get('user_id');
+        $userId = Auth::id();
 
         // Get all requests for posts created by current user
         $requests = ThesisRequest::whereHas('post', function ($q) use ($userId) {

@@ -12,7 +12,7 @@
             <p><strong>Thesis Topic:</strong> <?= $post->thesis_topic ?: 'N/A' ?></p>
             <p><strong>Field:</strong> <?= $post->thesis_field ?></p>
             <p><strong>Details:</strong> <?= $post->details ?></p>
-            <?php if (Session::get('user_id') != $post->posted_by): ?>
+            <?php if (\Illuminate\Support\Facades\Auth::id() != $post->posted_by): ?>
                 <form action="/thesis/request/<?= $post->id ?>" method="POST" class="mt-2">
                     <?= csrf_field() ?>
                     <textarea name="message" placeholder="Send your message" required class="w-full border rounded p-2 mb-2"></textarea>

@@ -30,6 +30,6 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect('/');
+        return redirect('/thesis')->with('success', 'Registration successful! Welcome to Uni-Buddy!');
     }
 }
