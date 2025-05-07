@@ -55,7 +55,7 @@
                     <a href="/notifications" class="relative hover:text-yellow-300 transition">
                         Notifications
                         <?php
-                            $unread = Auth::user()->notifications()->where('is_read', false)->count();
+                            //$unread = Auth::user()->notifications()->where('is_read', false)->count();
                             if ($unread > 0):
                         ?>
                             <span class="ml-1 px-2 py-0.5 rounded-full text-xs font-medium bg-red-500 text-white"><?= $unread ?></span>
