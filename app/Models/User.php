@@ -2,27 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-
-    // Primary key configuration
-    protected $primaryKey = 'studentID';
-    public $incrementing = false;
-    protected $keyType = 'bigInteger';
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<string>
+     * @var list<string>
      */
     protected $fillable = [
-        'studentID',
         'name',
         'email',
         'password',
@@ -31,7 +26,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<string>
+     * @var list<string>
      */
     protected $hidden = [
         'password',
@@ -39,35 +34,15 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-
-    /**
-     * Relationships
-     */
-    public function returnSchedules()
+    protected function casts(): array
     {
-        return $this->hasMany(ReturnSchedule::class, 'studentID', 'studentID');
-    }
-
-    public function sentRequests()
-    {
-        return $this->hasMany(TravelRequest::class, 'sender_id', 'studentID');
-    }
-
-    public function receivedRequests()
-    {
-        return $this->hasMany(TravelRequest::class, 'receiver_id', 'studentID');
-    }
-
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class, 'user_id', 'studentID');
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
